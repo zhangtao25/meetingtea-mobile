@@ -1,31 +1,43 @@
+<style>
+  html{
+    font-size: 37.5px;
+  }
+  :root{
+    /*--main-color: #ff0036;天猫红*/
+
+    /*支付宝蓝*/
+    /*--main-color: #108EE9;*/
+
+    /*严选金*/
+    /*--main-color: #b4a078;*/
+    --main-color: #b4282d;
+    --main-bg: rgb(255, 255, 255);
+    --logo-border-color: rebeccapurple;
+
+    --header-height: 68px;
+    --content-padding: 10px 20px;
+
+    --base-line-height: 1.428571429;
+    --transition-duration: .35s;
+    --external-link: "external link";
+    --margin-top: calc(2vh + 20px);
+  }
+</style>
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view/>
   </div>
 </template>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<script>
+  export default {
+    mounted(){
+      this.setHtmlFontSize()
+      window.onresize=()=>this.setHtmlFontSize()
+    },
+    methods:{
+      setHtmlFontSize(){
+        document.getElementsByTagName("html")[0].style.fontSize = document.body.clientWidth/10+"px"
+      }
+    }
+  }
+</script>
