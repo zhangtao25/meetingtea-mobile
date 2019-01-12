@@ -3,12 +3,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    background-color: white;
   }
 
   #goods-list ul.list li:nth-child(2n+1) {
     width: 50%;
-    /*height: 100px;*/
-    /*background-color: wheat;*/
     padding: 5px 5px 5px 10px;
     box-sizing: border-box;
   }
@@ -16,7 +15,6 @@
   #goods-list ul.list li:nth-child(2n) {
     width: 50%;
     height: 100px;
-    /*background-color: wheat;*/
     padding: 5px 10px 5px 5px;
     box-sizing: border-box;
   }
@@ -36,14 +34,10 @@
   }
 
   #goods-list ul.list li > div.wrap > .desc {
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*width: 100%;*/
     background: #F1ECE2;
     border-radius: 0 0 .05333rem .05333rem;
     font-size: .32rem;
     color: #9F8A60;
-    /*letter-spacing: 0;*/
     line-height: .48rem;
     padding: .08rem .13333rem;
     white-space: nowrap;
@@ -85,12 +79,12 @@
     border: 1px solid #B4282D;
     border-radius: .02667rem;
     height: 1rem;
-    /*display: inline-block;*/
   }
 </style>
 <template>
   <div id="goods-list">
-    <header-nav></header-nav>
+    <!--<header-nav></header-nav>-->
+    <img :src="currentCategory.bannerUrl" width="100%" alt="">
     <div class="container">
       <div class="header"></div>
       <ul class="list" v-if="test">
@@ -105,9 +99,7 @@
             <p class="good-name">{{item.name}}</p>
             <p class="price">
               <span>￥{{item.retailPrice}}</span>
-              <!--<span>￥499</span>-->
             </p>
-            <!--<p></p>-->
 
             <span class="promotional-labels" v-for="(item1,index) of item.itemTagList" :key="index">{{item1.name}}</span>
             <span class="promotional-labels" style="opacity: 0"></span>
@@ -118,7 +110,7 @@
   </div>
 </template>
 <script>
-  import HeaderNav from './../components/header-nav'
+  import HeaderNav from './../../../components/header-nav'
   import axios from 'axios'
 
   export default {
@@ -128,26 +120,29 @@
     data(){
       return{
         itemList: [],
-        test: false
+        test: false,
+        currentCategory:{}
       }
     },
     mounted() {
-      console.log(1)
-      axios.get('http://101.132.46.146:3030/mobile-goods/list', {
-        params: {
-          categoryId: this.$route.query.categoryId,
-          subCategoryId: this.$route.query.subCategoryId
-        }
-      }).then(res => {
-        this.test=true
-        this.itemList=res.data.categoryItems.itemList
-        console.log(res)
-      })
     },
     methods:{
       fn(item){
         console.log(item.id)
         this.$router.push({path:'/goods-detail',query:{id:item.id}})
+      }
+    },
+    watch:{
+      '$route.query':function (val) {
+        axios.get('http://101.132.46.146:3030/mobile-goods/list-test', {
+          params: {
+            categoryId: val.categoryId
+          }
+        }).then(res => {
+          this.test=true
+          this.itemList=res.data.categoryItemList[0].itemList
+          this.currentCategory = res.data.currentCategory
+        })
       }
     }
   }

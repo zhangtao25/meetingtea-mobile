@@ -16,6 +16,12 @@ export default new Router({
         {
           path: 'home',
           component: () => import('./views/main/home.vue'),
+          children: [
+            {
+              path: 'home-cate',
+              component: () => import('./views/main/home/home-cate.vue'),
+            }
+          ]
         },
         {
           path: 'classification',

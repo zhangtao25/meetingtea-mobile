@@ -4,7 +4,8 @@
     padding-top: 1.2rem;
     padding-bottom: 1.3rem;
   }
-  #classification header{
+
+  #classification .search{
     padding:.2rem 0rem;
     border-bottom: 1px solid #ededed;
     text-align: center;
@@ -12,18 +13,6 @@
     width: 100%;
     background-color: white;
     z-index: 1000;
-  }
-  #classification header p{
-    background-color: #ededed;
-    color: #666;
-    font-size: .37333rem;
-    /*line-height: 2;*/
-    padding-top: .15rem;
-    text-align: center;
-    height: .65rem;
-    width: 9rem;
-    margin-left: 50%;
-    transform: translateX(-50%);
   }
   #classification>.container{
     display: flex;
@@ -80,9 +69,7 @@
 </style>
 <template>
   <div id="classification">
-    <header>
-      <p>搜索商品，共21099款好物</p>
-    </header>
+    <search></search>
     <div class="container" v-if="isShow">
       <ul>
         <li v-for="(item,index) of navArr" :class="{'active':navArr[index].isActive}" :key="index" @click="onClickNav(index)">{{item.label}}</li>
@@ -101,7 +88,11 @@
 </template>
 <script>
   import axios from 'axios'
+  import Search from './../../components/search'
   export default {
+    components:{
+      'search': Search
+    },
     data(){
       return{
         navArr:[
