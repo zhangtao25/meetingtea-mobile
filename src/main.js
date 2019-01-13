@@ -7,10 +7,6 @@ import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'
 Vue.use(Mint);
 
-import vueg from 'vueg'
-import 'vueg/css/transition-min.css'
-Vue.use(vueg, router) //←注意这一句应该在router实例化之后
-
 import cateList from './assets/data/cateList'//引用文件
 cateList.data.unshift({name:'推荐',id:0})
 Vue.prototype.GLOBAL = {cateList:cateList.data}//挂载到Vue实例上面

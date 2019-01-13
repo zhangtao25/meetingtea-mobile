@@ -26,7 +26,7 @@
 </style>
 <template>
   <div class="slide-nav-bar">
-    <div class="swiper-container">
+    <div class="swiper-container slide-nav-bar-swiper">
       <div class="swiper-wrapper">
         <div
           :class="{'swiper-slide':true, 'active': activeId == item.id}"
@@ -52,7 +52,7 @@
     },
     methods: {
       initSwiper() {
-        let swiper = new Swiper('.swiper-container', {
+        let swiper = new Swiper('.slide-nav-bar-swiper', {
           slidesPerView: 6,
           freeMode: true,
         });
@@ -60,6 +60,13 @@
       onClickNavBar(item) {
         this.activeId = item.id
         this.$emit('onClickNavBar',item)
+      }
+    },
+    watch:{
+      navBarOptions:function (val) {
+        setTimeout(()=>{
+          this.initSwiper()
+        },100)
       }
     }
   }

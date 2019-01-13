@@ -3,13 +3,6 @@
     font-size: 37.5px;
   }
   :root{
-    /*--main-color: #ff0036;天猫红*/
-
-    /*支付宝蓝*/
-    /*--main-color: #108EE9;*/
-
-    /*严选金*/
-    /*--main-color: #b4a078;*/
     --main-color: #b4282d;
     --main-bg: rgb(255, 255, 255);
     --logo-border-color: rebeccapurple;

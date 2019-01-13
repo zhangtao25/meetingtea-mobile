@@ -94,7 +94,8 @@
 <script>
   import axios from 'axios'
   import HeaderNav from './../components/header-nav'
-  import GoodsDetailContent from './../components/goods-detail-content'
+  import GoodsDetailContent from './goods-detail/goods-detail-content'
+  import Goods from './../service/goods'
   export default {
     components:{
       'header-nav': HeaderNav,
@@ -107,16 +108,13 @@
       }
     },
     mounted(){
-      console.log(this.$route.query)
-      axios.get('http://101.132.46.146:3030/mobile-goods/detail',{params:{id:this.$route.query.id}}).then(res=>{
+      Goods.getGoodsDetail(this.$route.query.id).then(res=>{
         this.test=true
         this.detailData=res.data
-        console.log(res)
       })
     },
     methods:{
       fn(val,item){
-        // console.log(val.slice(0,6))
         if (val.slice(0,6) == 'picUrl'){
           return item
         }

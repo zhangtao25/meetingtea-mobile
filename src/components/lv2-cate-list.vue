@@ -1,11 +1,11 @@
 <style>
-  #goods-list ul {
+  #lv2-cate-list ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
   }
 
-  #goods-list ul.list li:nth-child(2n+1) {
+  #lv2-cate-list ul.list li:nth-child(2n+1) {
     width: 50%;
     /*height: 100px;*/
     /*background-color: wheat;*/
@@ -13,7 +13,7 @@
     box-sizing: border-box;
   }
 
-  #goods-list ul.list li:nth-child(2n) {
+  #lv2-cate-list ul.list li:nth-child(2n) {
     width: 50%;
     height: 100px;
     /*background-color: wheat;*/
@@ -21,21 +21,21 @@
     box-sizing: border-box;
   }
 
-  #goods-list ul.list li > div {
+  #lv2-cate-list ul.list li > div {
     width: 100%;
     height: 100%;
     background-color: white;
   }
 
-  #goods-list ul.list li > div.wrap .img-wrap {
+  #lv2-cate-list ul.list li > div.wrap .img-wrap {
     background-color: rgb(242, 242, 242);
   }
 
-  #goods-list ul.list li > div.wrap img {
+  #lv2-cate-list ul.list li > div.wrap img {
     width: 100%;
   }
 
-  #goods-list ul.list li > div.wrap > .desc {
+  #lv2-cate-list ul.list li > div.wrap > .desc {
     /*position: absolute;*/
     /*bottom: 0;*/
     /*width: 100%;*/
@@ -51,7 +51,7 @@
     overflow: hidden;
   }
 
-  #goods-list ul.list li > div.wrap > .good-name {
+  #lv2-cate-list ul.list li > div.wrap > .good-name {
     margin-top: .21333rem;
     line-height: .53333rem;
     font-size: .37333rem;
@@ -61,13 +61,13 @@
     color: #333;
   }
 
-  #goods-list ul.list li > div.wrap > .price > span:nth-child(1) {
+  #lv2-cate-list ul.list li > div.wrap > .price > span:nth-child(1) {
     font-size: .42667rem;
     line-height: .64rem;
     color: #b4282d;
   }
 
-  #goods-list ul.list li > div.wrap > .price > span:nth-child(2) {
+  #lv2-cate-list ul.list li > div.wrap > .price > span:nth-child(2) {
     margin-left: .10667rem;
     font-size: .32rem;
     color: #999;
@@ -76,7 +76,7 @@
     font-family: PingFangSC-Light;
   }
 
-  #goods-list ul.list li > div.wrap > .promotional-labels {
+  #lv2-cate-list ul.list li > div.wrap > .promotional-labels {
     margin-bottom: .06667rem;
     padding: 0 .10667rem;
     line-height: .37333rem;
@@ -89,7 +89,7 @@
   }
 </style>
 <template>
-  <div id="goods-list">
+  <div id="lv2-cate-list">
     <header-nav></header-nav>
     <div class="container">
       <div class="header"></div>
@@ -118,8 +118,9 @@
   </div>
 </template>
 <script>
-  import HeaderNav from './../components/header-nav'
+  import HeaderNav from './header-nav'
   import axios from 'axios'
+  import Goods from './../service/goods'
 
   export default {
     components: {
@@ -132,16 +133,10 @@
       }
     },
     mounted() {
-      console.log(1)
-      axios.get('http://101.132.46.146:3030/mobile-goods/list', {
-        params: {
-          categoryId: this.$route.query.categoryId,
-          subCategoryId: this.$route.query.subCategoryId
-        }
-      }).then(res => {
+      Goods.getLv2CateList(this.$route.query.categoryId,this.$route.query.subCategoryId).then(res=>{
+        console.log(res)
         this.test=true
         this.itemList=res.data.categoryItems.itemList
-        console.log(res)
       })
     },
     methods:{

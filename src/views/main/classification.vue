@@ -5,10 +5,8 @@
     padding-bottom: 1.3rem;
   }
 
-  #classification .search{
-    padding:.2rem 0rem;
+  #classification header{
     border-bottom: 1px solid #ededed;
-    text-align: center;
     position: fixed;top: 0;
     width: 100%;
     background-color: white;
@@ -19,7 +17,6 @@
   }
   #classification>.container>ul{
     width: 2.16rem;
-    border-top: 1px solid #ededed;
     border-right: 1px solid #ededed;
     padding-top: .53333rem;
     position: fixed;
@@ -57,11 +54,6 @@
     background-size: cover;
     border-radius: 4px;
   }
-  #classification>.container .side>ul{
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
-    /*justify-content: space-around;*/
-  }
   #classification>.container .side>ul>li{
     width: 33%;
     float: left;
@@ -69,10 +61,12 @@
 </style>
 <template>
   <div id="classification">
-    <search></search>
+    <header>
+      <top-search></top-search>
+    </header>
     <div class="container" v-if="isShow">
       <ul>
-        <li v-for="(item,index) of navArr" :class="{'active':navArr[index].isActive}" :key="index" @click="onClickNav(index)">{{item.label}}</li>
+        <li v-for="(item,index) of classificationData" :class="{'active':index == activeIndex}" :key="index" @click="onClickNav(index)">{{item.name}}</li>
       </ul>
       <div class="side">
         <div class="header" :style="{'background-image': 'url(http:'+classificationData[activeIndex]['bannerUrl']+')'}"></div>
@@ -88,77 +82,31 @@
 </template>
 <script>
   import axios from 'axios'
-  import Search from './../../components/search'
+  import TopSearch from './../../components/top-search'
   export default {
     components:{
-      'search': Search
+      'top-search': TopSearch
     },
     data(){
       return{
-        navArr:[
-          {
-            label: '居家',
-            isActive: true
-          },
-          {
-            label: '鞋包配饰',
-            isActive: false
-          },
-          {
-            label: '服装',
-            isActive: false
-          },
-          {
-            label: '电器',
-            isActive: false
-          },
-          {
-            label: '婴童',
-            isActive: false
-          },
-          {
-            label: '饮食',
-            isActive: false
-          },
-          {
-            label: '洗护',
-            isActive: false
-          },
-          {
-            label: '餐厨',
-            isActive: false
-          },
-          {
-            label: '文体',
-            isActive: false
-          },
-          {
-            label: '特色区',
-            isActive: false
-          },
-        ],
         isShow:false,
         classificationData:[],
         activeIndex: 0
       }
     },
     mounted(){
-      axios.get('/test.json').then(res=>{
+      axios.get('/cateList.json').then(res=>{
         this.classificationData = res.data.data
         this.isShow=true
       })
     },
     methods:{
       onClickNav(index){
-        for (let i in this.navArr){
-          this.navArr[i].isActive = false
-        }
-        this.navArr[index].isActive=true
         this.activeIndex= index
       },
       onClickLv2(item){
         console.log(item)
-        this.$router.push({path:'/goods-list',query:{subCategoryId:item.id,categoryId:item.superCategoryId}})
+        this.$router.push({path:'/lv2-cate-list',query:{subCategoryId:item.id,categoryId:item.superCategoryId}})
       }
     }
   }
