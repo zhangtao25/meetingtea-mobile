@@ -7,7 +7,11 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/main/home/home-recommend'
+      redirect: '/main/home/recommend'
+    },
+    {
+      path: '/main/home',
+      redirect: '/main/home/recommend'
     },
     {
       path: '/main',
@@ -18,13 +22,13 @@ export default new Router({
           component: () => import('./views/main/home.vue'),
           children: [
             {
-              path: 'home-recommend',
-              component: () => import('./views/main/home/home-recommend.vue'),
+              path: 'recommend',
+              component: () => import('./views/main/home/recommend.vue'),
             },
             {
-              path: 'lv1-cate-list',
-              component: () => import('./components/lv1-cate-list.vue'),
-            }
+              path: 'lv1-category',
+              component: () => import('./views/main/home/lv1-category.vue'),
+            },
           ]
         },
         {

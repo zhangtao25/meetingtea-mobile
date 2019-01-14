@@ -32,9 +32,9 @@
     methods:{
       onClickNavBar(val){
         if (val.id==0){
-          this.$router.push({path:'/main/home/home-recommend'})
+          this.$router.push({path:'/main/home/recommend'})
         } else {
-          this.$router.push({path:'/main/home/lv1-cate-list',query:{categoryId:val.id}})
+          this.$router.push({path:'/main/home/lv1-category'})
         }
       },
       initCateList(){

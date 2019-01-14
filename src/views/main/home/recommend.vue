@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-  import HomeRecommendNav from './home-recommend/home-recommend-nav'
+  import HomeRecommendNav from './recommend/home-recommend-nav'
   export default {
     components:{
       'home-recommend-nav':HomeRecommendNav
