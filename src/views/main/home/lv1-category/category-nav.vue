@@ -1,3 +1,4 @@
+<!--精做-->
 <style>
   .category-nav{
     display: flex;
@@ -19,26 +20,18 @@
 </style>
 <template>
   <ul class="category-nav">
-    <li v-for="(item,index) of testData">
-      <img :src="item.wapBannerUrl" alt="">
-      <p>{{item.name}}</p>
+    <li v-for="(item,index) of navArr" :key="index">
+      <img :src="item.pic_url" alt="">
+      <p>{{item.title}}</p>
     </li>
   </ul>
 </template>
 <script>
-  import axios from 'axios'
   export default {
     data(){
       return{
-        testData:[]
       }
     },
-    mounted(){
-      axios.get('/cateList.json').then(res=>{
-        console.log(res.data.data[0]['subCateList'])
-        this.testData = res.data.data[0]['subCateList']
-        this.testData= this.testData.slice(0,10)
-      })
-    }
+    props:['navArr']
   }
 </script>

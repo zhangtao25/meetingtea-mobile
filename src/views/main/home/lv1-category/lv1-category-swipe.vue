@@ -1,3 +1,4 @@
+<!--精做-->
 <style>
   .lv1-category-swipe {
     position: relative;
@@ -43,8 +44,8 @@
     </div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" v-for="(item,index) of swipeImgSrcs" :key="index">
-          <img :src="item.imgSrc" alt="">
+        <div class="swiper-slide" v-for="(item,index) of swipeArr" :key="index">
+          <img :src="item.pic_url" alt="">
         </div>
       </div>
       <div class="swiper-pagination"></div>
@@ -55,13 +56,18 @@
   import Swiper from 'swiper'
 
   export default {
+    data(){
+      return{
+        mySwiper:{}
+      }
+    },
     mounted() {
       this.initSwiper();
     },
-    props: ["titleImgSrc", "swipeImgSrcs"],
+    props: ["titleImgSrc", "swipeArr"],
     methods: {
       initSwiper() {
-        let mySwiper = new Swiper('.lv1-category-swipe .swiper-container', {
+        this.mySwiper = new Swiper('.lv1-category-swipe .swiper-container', {
           autoplay: {
             disableOnInteraction: false,
           },
@@ -81,6 +87,10 @@
           },
         })
       }
+    },
+    updated(){
+      this.mySwiper.destroy();
+      this.initSwiper();
     }
   }
 </script>

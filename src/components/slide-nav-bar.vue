@@ -29,10 +29,10 @@
     <div class="swiper-container slide-nav-bar-swiper">
       <div class="swiper-wrapper">
         <div
-          :class="{'swiper-slide':true, 'active': activeId == item.id}"
+          :class="{'swiper-slide':true, 'active': activeId == item.floor_id}"
           v-for="(item,index) of navBarOptions"
           :key="index"
-          @click="onClickNavBar(item)">{{item.name}}
+          @click="onClickNavBar(item)">{{item.data.title}}
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
   export default {
     data() {
       return {
-        activeId: 0
+        activeId: 37
       }
     },
     props:['navBarOptions'],
@@ -58,7 +58,7 @@
         });
       },
       onClickNavBar(item) {
-        this.activeId = item.id
+        this.activeId = item.floor_id
         this.$emit('onClickNavBar',item)
       }
     },

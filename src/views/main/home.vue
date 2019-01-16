@@ -15,6 +15,7 @@
   import TopSearch from './../../components/top-search'
   import SlideNavBar from './../../components/slide-nav-bar'
   import axios from 'axios'
+  import Goods from './../../service/goods'
 
   export default {
     components:{
@@ -23,7 +24,8 @@
     },
     data(){
       return{
-        cateList: []
+        cateList: [],
+        HomepageData:{}
       }
     },
     mounted(){
@@ -31,19 +33,32 @@
     },
     methods:{
       onClickNavBar(val){
-        if (val.id==0){
+        let jump_url = val.data.jump_url
+        // console.log(jump_url.slice(jump_url.length-2,jump_url.length))
+        let id = jump_url.slice(jump_url.length-2,jump_url.length)
+        if (val.floor_id==0){
           this.$router.push({path:'/main/home/recommend'})
         } else {
-          this.$router.push({path:'/main/home/lv1-category'})
+          this.$router.push({path:'/main/home/lv1-category',query:{id}})
         }
       },
       initCateList(){
-        axios.get('/cateList.json').then(res=>{
-          this.cateList = res.data.data
-          this.cateList.unshift({
-            name:'推荐',
-            id:0
-          })
+        // axios.get('/cateList.json').then(res=>{
+        //   this.cateList = res.data.data
+        //   this.cateList.unshift({
+        //     name:'推荐',
+        //     id:0
+        //   })
+        // })
+        Goods.getHomepage().then(res=>{
+          console.log(res)
+          this.HomepageData = res.data
+
+          for (let i = 0; i < this.HomepageData.data.homepage.floors.length; i++) {
+            if (this.HomepageData.data.homepage.floors[i]['module_key'] =='product_category'){
+              this.cateList.push(this.HomepageData.data.homepage.floors[i])
+            }
+          }
         })
       }
     }
