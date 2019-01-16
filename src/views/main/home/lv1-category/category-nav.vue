@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     background-color: white;
     margin-top: .3rem;
+    padding: .3rem 0;
   }
   .category-nav>li{
     width: 20%;

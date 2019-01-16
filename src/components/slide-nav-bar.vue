@@ -48,18 +48,23 @@
     },
     props:['navBarOptions'],
     mounted() {
-      this.initSwiper();
+      // this.initSwiper();
     },
     methods: {
       initSwiper() {
         let swiper = new Swiper('.slide-nav-bar-swiper', {
           slidesPerView: 6,
           freeMode: true,
+          freeModeMomentumBounce:false
         });
       },
       onClickNavBar(item) {
-        this.activeId = item.floor_id
-        this.$emit('onClickNavBar',item)
+        if (item.floor_id!=36){
+          this.activeId = item.floor_id
+          this.$emit('onClickNavBar',item)
+        }else {
+          console.log('手机分类不可用')
+        }
       }
     },
     watch:{

@@ -11,6 +11,8 @@
         :swipe-arr="lv1CategoryData.floors[0].data.items">
       </lv1-category-swipe>
       <category-nav :nav-arr="lv1CategoryData.floors[1].data.items"></category-nav>
+      <tab-new-product :new-product-data="lv1CategoryData.floors[2].data"></tab-new-product>
+      <tab-rankings :rankings-data="lv1CategoryData.floors[3].data"></tab-rankings>
     </div>
   </div>
 </template>
@@ -18,11 +20,15 @@
 <script>
   import Lv1CategorySwipe from './lv1-category/lv1-category-swipe'
   import CategoryNav from './lv1-category/category-nav'
+  import TabNewProduct from './lv1-category/tab-new-product'
+  import TabRankings from './lv1-category/tab-rankings'
   import Good from './../../../service/goods'
   export default {
     components:{
       'lv1-category-swipe': Lv1CategorySwipe,
-      'category-nav': CategoryNav
+      'category-nav': CategoryNav,
+      'tab-new-product': TabNewProduct,
+      'tab-rankings': TabRankings
     },
     data(){
       return{

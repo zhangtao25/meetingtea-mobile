@@ -55,6 +55,9 @@
   .active{
     color: var(--main-color)
   }
+  #main{
+    padding-bottom: 1.3rem;
+  }
 </style>
 <template>
   <div id="main">
