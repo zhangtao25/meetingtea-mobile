@@ -1,36 +1,42 @@
 <style>
-  .home-recommend-nav{
+  .home-recommend-nav {
     position: relative;
   }
-  .home-recommend-nav .nav{
+
+  .home-recommend-nav .nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     background-color: #ffecdd;
   }
-  .home-recommend-nav li{
+
+  .home-recommend-nav li {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 20%;
   }
-  .home-recommend-nav li img{
+
+  .home-recommend-nav li img {
     width: 1.46667rem;
     height: 1.46667rem;
   }
-  .home-recommend-nav li span{
+
+  .home-recommend-nav li span {
     font-size: .32rem;
   }
 
-  .home-recommend-nav .swiper-container{
+  .home-recommend-nav .swiper-container {
     width: 100%;
     height: 4.93333rem;
   }
-  .home-recommend-nav .swiper-container .swiper-slide{
+
+  .home-recommend-nav .swiper-container .swiper-slide {
     width: 100%;
     height: 100%;
   }
-  .home-recommend-nav .swiper-container img{
+
+  .home-recommend-nav .swiper-container img {
     width: 100%;
   }
 </style>
@@ -58,26 +64,27 @@
 <script>
   import axios from 'axios'
   import Swiper from 'swiper'
+
   export default {
-    data(){
-      return{
-        swiperData:[],
-        navData:[]
+    data() {
+      return {
+        swiperData: [],
+        navData: []
       }
     },
-    mounted(){
-      axios.get('./home-recommend.json').then(res=>{
+    mounted() {
+      axios.get('./home-recommend.json').then(res => {
         this.navData = res.data.kingKongModule
         this.swiperData = res.data.focusList
 
-        setTimeout(()=>{
+        setTimeout(() => {
           this.initSwiper()
-        },100)
+        }, 100)
       })
 
     },
-    methods:{
-      initSwiper(){
+    methods: {
+      initSwiper() {
         var swiper = new Swiper('.home-recommend-nav-swiper', {
           slidesPerView: 1,
           spaceBetween: 30,
@@ -88,7 +95,7 @@
           }
         });
       },
-      onClickNav(index){
+      onClickNav(index) {
         console.log(index)
       }
     }

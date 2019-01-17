@@ -1,26 +1,32 @@
 <style>
-  .tab-rankings{
+  .tab-rankings {
     margin-top: .3rem;
     padding: .3rem;
     background-color: white;
   }
-  .tab-rankings>.content{
+
+  .tab-rankings > .content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  .tab-rankings>.content>li{
+
+  .tab-rankings > .content > li {
     width: 32%;
   }
-  .tab-rankings>.content>li:nth-child(3){
+
+  .tab-rankings > .content > li:nth-child(3) {
   }
-  .tab-rankings>.content>li>img{
+
+  .tab-rankings > .content > li > img {
     width: 100%;
   }
-  .tab-rankings .name{
+
+  .tab-rankings .name {
     font-size: .4rem;
   }
-  .tab-rankings .price_min{
+
+  .tab-rankings .price_min {
     color: rgb(169, 33, 18);
     font-size: .5rem;
     margin-top: .3rem;
@@ -43,10 +49,11 @@
 </template>
 <script>
   import CommonTitle from './../../../../components/common-title'
+
   export default {
-    components:{
+    components: {
       'common-title': CommonTitle
     },
-    props:['rankingsData']
+    props: ['rankingsData']
   }
 </script>

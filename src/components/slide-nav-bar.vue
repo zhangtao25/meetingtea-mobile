@@ -10,18 +10,18 @@
   }
 
   .slide-nav-bar .swiper-slide {
+    background-color: rgb(213, 94, 70);
     text-align: center;
     font-size: .37333rem;
-    background: #fff;
+
     line-height: .8rem;
-    color: #333;
+    color: white;
     width: 50px;
-    border-bottom: .05333rem solid white;
+    border-bottom: .08rem solid rgb(213, 94, 70);
   }
 
   .slide-nav-bar .swiper-slide.active {
-    color: var(--main-color);
-    border-bottom: 3px solid var(--main-color);
+    border-bottom: .08rem solid white;
   }
 </style>
 <template>
@@ -40,13 +40,14 @@
 </template>
 <script>
   import Swiper from 'swiper'
+
   export default {
     data() {
       return {
         activeId: 37
       }
     },
-    props:['navBarOptions'],
+    props: ['navBarOptions'],
     mounted() {
       // this.initSwiper();
     },
@@ -55,23 +56,23 @@
         let swiper = new Swiper('.slide-nav-bar-swiper', {
           slidesPerView: 6,
           freeMode: true,
-          freeModeMomentumBounce:false
+          freeModeMomentumBounce: false
         });
       },
       onClickNavBar(item) {
-        if (item.floor_id!=36){
+        if (item.floor_id != 36) {
           this.activeId = item.floor_id
-          this.$emit('onClickNavBar',item)
-        }else {
+          this.$emit('onClickNavBar', item)
+        } else {
           console.log('手机分类不可用')
         }
       }
     },
-    watch:{
-      navBarOptions:function (val) {
-        setTimeout(()=>{
+    watch: {
+      navBarOptions: function (val) {
+        setTimeout(() => {
           this.initSwiper()
-        },100)
+        }, 100)
       }
     }
   }

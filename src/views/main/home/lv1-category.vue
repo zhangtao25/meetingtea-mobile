@@ -1,6 +1,6 @@
 <style>
-  #lv1-category{
-    background-color: rgb(244,244,244);
+  #lv1-category {
+    background-color: rgb(244, 244, 244);
   }
 </style>
 <template>
@@ -23,33 +23,34 @@
   import TabNewProduct from './lv1-category/tab-new-product'
   import TabRankings from './lv1-category/tab-rankings'
   import Good from './../../../service/goods'
+
   export default {
-    components:{
+    components: {
       'lv1-category-swipe': Lv1CategorySwipe,
       'category-nav': CategoryNav,
       'tab-new-product': TabNewProduct,
       'tab-rankings': TabRankings
     },
-    data(){
-      return{
-        isRender:false,
-        lv1CategoryData:{}
+    data() {
+      return {
+        isRender: false,
+        lv1CategoryData: {}
       }
     },
-    mounted(){
+    mounted() {
       this.init();
     },
-    methods:{
-      init(){
-        Good.getLv1Category(this.$route.query.id).then(res=>{
+    methods: {
+      init() {
+        Good.getLv1Category(this.$route.query.id).then(res => {
           this.lv1CategoryData = res.data
           this.isRender = true
           // this.
         })
       }
     },
-    watch:{
-      '$route.query.id':function () {
+    watch: {
+      '$route.query.id': function () {
         this.init()
       }
     }

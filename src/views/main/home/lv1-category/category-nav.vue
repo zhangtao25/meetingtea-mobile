@@ -1,20 +1,23 @@
 <!--精做-->
 <style>
-  .category-nav{
+  .category-nav {
     display: flex;
     flex-wrap: wrap;
     background-color: white;
     margin-top: .3rem;
     padding: .3rem 0;
   }
-  .category-nav>li{
+
+  .category-nav > li {
     width: 20%;
     text-align: center;
   }
-  .category-nav>li>img{
+
+  .category-nav > li > img {
     width: 60%;
   }
-  .category-nav>li>p{
+
+  .category-nav > li > p {
     text-align: center;
     font-size: .32rem;
   }
@@ -29,10 +32,9 @@
 </template>
 <script>
   export default {
-    data(){
-      return{
-      }
+    data() {
+      return {}
     },
-    props:['navArr']
+    props: ['navArr']
   }
 </script>

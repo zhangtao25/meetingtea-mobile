@@ -2,7 +2,7 @@
   .top-search{
     width: 100%;
     height: 1.17333rem;
-    background-color: white;
+    background-color: rgb(213,94,70);
     display: flex;
     justify-content: center;
     align-items: center;
