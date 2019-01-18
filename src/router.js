@@ -28,6 +28,9 @@ export default new Router({
             {
               path: 'lv1-category',
               component: () => import('./views/main/home/lv1-category.vue'),
+              meta:{
+                statusBarBgc:'red'
+              },
             },
           ]
         },
@@ -56,6 +59,9 @@ export default new Router({
     {
       path: '/goods-detail',
       component: () => import('./views/goods-detail.vue'),
+      meta:{
+        statusBarBgc:'blue'
+      },
     }
   ]
 })

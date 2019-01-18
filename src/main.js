@@ -11,6 +11,16 @@ import cateList from './assets/data/cateList'//引用文件
 cateList.data.unshift({name:'推荐',id:0})
 Vue.prototype.GLOBAL = {cateList:cateList.data}//挂载到Vue实例上面
 
+router.beforeEach((to, from, next) => {
+  let statusBarBgc = 'white'
+  if (JSON.stringify(to.meta) != '{}'){
+    statusBarBgc = to.meta.statusBarBgc
+  }
+  console.log(statusBarBgc)
+  // window.postMessage('hi')
+  next()
+})
+
 Vue.config.productionTip = false
 
 new Vue({
